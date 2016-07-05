@@ -54,14 +54,22 @@
 		B03AC3FC1D2B9C5700608C80 /* VKMusic */ = {
 			isa = PBXGroup;
 			children = (
-				B03AC3FD1D2B9C5700608C80 /* AppDelegate.swift */,
+				B03AC40F1D2B9C6800608C80 /* Supporting Files */,
 				B03AC3FF1D2B9C5700608C80 /* ViewController.swift */,
 				B03AC4011D2B9C5700608C80 /* Main.storyboard */,
+			);
+			path = VKMusic;
+			sourceTree = "<group>";
+		};
+		B03AC40F1D2B9C6800608C80 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B03AC3FD1D2B9C5700608C80 /* AppDelegate.swift */,
 				B03AC4041D2B9C5700608C80 /* Assets.xcassets */,
 				B03AC4061D2B9C5700608C80 /* LaunchScreen.storyboard */,
 				B03AC4091D2B9C5700608C80 /* Info.plist */,
 			);
-			path = VKMusic;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
