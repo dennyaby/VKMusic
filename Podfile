@@ -6,5 +6,8 @@ target 'VKMusic' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxSocialConnect'
   pod 'VK-ios-sdk'
+  pod 'UITableView-NXEmptyView'
 end
