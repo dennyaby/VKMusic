@@ -15,7 +15,7 @@ public protocol ObserverType {
     /**
     The type of elements in sequence that observer can observe.
     */
-    associatedtype E
+    typealias E
 
     /**
     Notify observer about sequence event.

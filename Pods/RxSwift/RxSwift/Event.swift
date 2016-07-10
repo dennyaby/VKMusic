@@ -8,59 +8,82 @@
 
 import Foundation
 
+
 /**
-Represents a sequence event.
+Represents sequence event
 
 Sequence grammar:
 Next\* (Error | Completed)
 */
-public enum Event<Element> {
-    /// Next element is produced.
+public enum Event<Element> : CustomDebugStringConvertible {
+    /**
+    Next element is produced
+    */
     case Next(Element)
-
-    /// Sequence terminated with an error.
+    
+    /**
+    Sequence terminates with error
+    */
     case Error(ErrorType)
-
-    /// Sequence completed successfully.
+    
+    /**
+    Sequence completes sucessfully
+    */
     case Completed
 }
 
-extension Event : CustomDebugStringConvertible {
-    /// - returns: Description of event.
+extension Event {
+    /**
+    - returns: Description of event
+    */
     public var debugDescription: String {
-        switch self {
-        case .Next(let value):
-            return "Next(\(value))"
-        case .Error(let error):
-            return "Error(\(error))"
-        case .Completed:
-            return "Completed"
+        get {
+            switch self {
+            case .Next(let value):
+                return "Next(\(value))"
+            case .Error(let error):
+                return "Error(\(error))"
+            case .Completed:
+                return "Completed"
+            }
         }
     }
 }
 
 extension Event {
-    /// - returns: Is `Completed` or `Error` event.
+    /**
+    - returns: Is `Completed` or `Error` event
+    */
     public var isStopEvent: Bool {
-        switch self {
-        case .Next: return false
-        case .Error, .Completed: return true
+        get {
+            switch self {
+            case .Next: return false
+            case .Error, .Completed: return true
+            }
         }
     }
-
-    /// - returns: If `Next` event, returns element value.
+    
+    /**
+    - returns: If `Next` event, returns element value.
+    */
     public var element: Element? {
-        if case .Next(let value) = self {
-            return value
+        get {
+            if case .Next(let value) = self {
+                return value
+            }
+            return nil
         }
-        return nil
     }
-
-    /// - returns: If `Error` event, returns error.
+    
+    /**
+    - returns: If `Error` event, returns error.
+    */
     public var error: ErrorType? {
-        if case .Error(let error) = self {
-            return error
+        get {
+            if case .Error(let error) = self {
+                return error
+            }
+            return nil
         }
-        return nil
     }
 }

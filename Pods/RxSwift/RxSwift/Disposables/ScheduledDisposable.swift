@@ -28,7 +28,9 @@ public class ScheduledDisposable : Cancelable {
     - returns: Was resource disposed.
     */
     public var disposed: Bool {
-        return _disposed == 1
+        get {
+            return _disposed == 1
+        }
     }
 
     /**
@@ -37,7 +39,7 @@ public class ScheduledDisposable : Cancelable {
     - parameter scheduler: Scheduler where the disposable resource will be disposed on.
     - parameter disposable: Disposable resource to dispose on the given scheduler.
     */
-    public init(scheduler: ImmediateSchedulerType, disposable: Disposable) {
+    init(scheduler: ImmediateSchedulerType, disposable: Disposable) {
         self.scheduler = scheduler
         _disposable = disposable
     }

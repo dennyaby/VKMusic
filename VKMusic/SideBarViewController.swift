@@ -53,8 +53,5 @@ class SideBarViewController: UITableViewController {
             }
         }
     }
-
-    
-
    
 }

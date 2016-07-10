@@ -20,4 +20,14 @@ struct Constants {
         static let LogoutSegue = "LogoutSegue"
         static let PlaySongSegue = "PlaySong"
     }
+    
+    struct Notifications {
+        static let SongLoaded = "SongLoadedNotification"
+        static let UserInfoSongField = "song"
+        static let RestartSong = "RestartSong"
+    }
+    
+    struct Configuration {
+        static let SecondsToPlayPrevious: Float = 5.0
+    }
 }

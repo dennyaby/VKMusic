@@ -21,7 +21,6 @@ class JSONParser {
         
         if let arrayOfSongs = JSON(json)["response"]["items"].array {
             for song in arrayOfSongs {
-                print("Song: \(song)")
                 if let artist = song["artist"].string, title = song["title"].string, duration = song["duration"].int, url = song["url"].string {
                     result.items.append(Song(artist: artist, title: title, duration: duration, url: url))
                 }

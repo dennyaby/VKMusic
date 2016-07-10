@@ -36,8 +36,8 @@ class SingleAsyncSink<ElementType, O: ObserverType where O.E == ElementType> : S
             }
 
             if _seenValue == false {
-                _seenValue = true
                 forwardOn(.Next(value))
+                _seenValue = true
             } else {
                 forwardOn(.Error(RxError.MoreThanOneElement))
                 dispose()

@@ -251,7 +251,9 @@ extension VirtualTimeScheduler {
     A textual representation of `self`, suitable for debugging.
     */
     public var debugDescription: String {
-        return self._schedulerQueue.debugDescription
+        get {
+            return self._schedulerQueue.debugDescription
+        }
     }
 }
 
@@ -264,7 +266,9 @@ class VirtualSchedulerItem<Time>
     let id: Int
 
     var disposed: Bool {
-        return disposable.disposed
+        get {
+            return disposable.disposed
+        }
     }
     
     var disposable = SingleAssignmentDisposable()

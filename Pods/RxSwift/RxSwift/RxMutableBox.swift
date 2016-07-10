@@ -32,6 +32,8 @@ extension RxMutableBox {
     - returns: Box description.
     */
     var debugDescription: String {
-        return "MutatingBox(\(self.value))"
+        get {
+            return "MutatingBox(\(self.value))"
+        }
     }
 }

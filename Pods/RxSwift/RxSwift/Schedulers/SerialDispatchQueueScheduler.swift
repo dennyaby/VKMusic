@@ -12,7 +12,7 @@ import Foundation
 Abstracts the work that needs to be performed on a specific `dispatch_queue_t`. It will make sure 
 that even if concurrent dispatch queue is passed, it's transformed into a serial one.
 
-It is extremely important that this scheduler is serial, because
+It is extemely important that this scheduler is serial, because
 certain operator perform optimizations that rely on that property.
 
 Because there is no way of detecting is passed dispatch queue serial or
@@ -35,7 +35,9 @@ public class SerialDispatchQueueScheduler: SchedulerType {
     - returns: Current time.
     */
     public var now : NSDate {
-        return NSDate()
+        get {
+            return NSDate()
+        }
     }
     
     // leeway for scheduling timers
@@ -79,7 +81,19 @@ public class SerialDispatchQueueScheduler: SchedulerType {
      */
     @available(iOS 8, OSX 10.10, *)
     public convenience init(globalConcurrentQueueQOS: DispatchQueueSchedulerQOS, internalSerialQueueName: String = "rx.global_dispatch_queue.serial") {
-        let priority = globalConcurrentQueueQOS.QOSClass
+        let priority: qos_class_t
+        switch globalConcurrentQueueQOS {
+        case .UserInteractive:
+            priority = QOS_CLASS_USER_INTERACTIVE
+        case .UserInitiated:
+            priority = QOS_CLASS_USER_INITIATED
+        case .Default:
+            priority = QOS_CLASS_DEFAULT
+        case .Utility:
+            priority = QOS_CLASS_UTILITY
+        case .Background:
+            priority = QOS_CLASS_BACKGROUND
+        }
         self.init(queue: dispatch_get_global_queue(priority, UInt(0)), internalSerialQueueName: internalSerialQueueName)
     }
 

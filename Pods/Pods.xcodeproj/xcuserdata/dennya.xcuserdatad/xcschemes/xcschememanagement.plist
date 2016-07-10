@@ -9,7 +9,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>OAuthSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-VKMusic.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxBlocking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxCocoa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxSocialConnect.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -29,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>UITableView-NXEmptyView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>VK-ios-sdk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,22 +62,42 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>247F253857D128BBEBDC36E9F49E5522</key>
+		<key>04275AA3C23066E0E43B616C9A899302</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>50822886B6ABF2219EC9EECD0C864A67</key>
+		<key>2033FA6E628C1425987E8619ED6EBE20</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5E6DC0C65301E1698A32A5467C090800</key>
+		<key>45935B91DF0442390E2CA6DEEF68AE99</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>76D6167A63964C4472F6CC986DACBF97</key>
+		<key>4FAAD1F59C58BE1936E419A6E8B3246D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5AC22684A7A0719C63859980FE63F142</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6465B4ACEDCF49DA291C69D16DFD4715</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6B762FC68D4157A991258735E6D54D9E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>76FEBF86269896184FEAAE5A536EA7A2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,7 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E0CFAE7C6BEC736E90A7AC59CD896892</key>
+		<key>ADA65ADD0D5CCCE2C8B3DE1A8C1E283D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BFB7A2543326D244F6CF9DB14D242320</key>
 		<dict>
 			<key>primary</key>
 			<true/>

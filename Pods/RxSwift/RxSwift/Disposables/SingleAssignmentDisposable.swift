@@ -25,7 +25,9 @@ public class SingleAssignmentDisposable : DisposeBase, Disposable, Cancelable {
     - returns: A value that indicates whether the object is disposed.
     */
     public var disposed: Bool {
-        return _disposed
+        get {
+            return _disposed
+        }
     }
 
     /**
@@ -51,7 +53,6 @@ public class SingleAssignmentDisposable : DisposeBase, Disposable, Cancelable {
     }
 
     private func _setDisposable(newValue: Disposable) -> Disposable? {
-        _lock.lock(); defer { _lock.unlock() }
         if _disposableSet {
             rxFatalError("oldState.disposable != nil")
         }

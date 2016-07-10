@@ -76,7 +76,9 @@ class WithLatestFromSecond<FirstType, SecondType, ResultType, O: ObserverType wh
     private let _disposable: Disposable
 
     var _lock: NSRecursiveLock {
-        return _parent._lock
+        get {
+            return _parent._lock
+        }
     }
 
     init(parent: Parent, disposable: Disposable) {

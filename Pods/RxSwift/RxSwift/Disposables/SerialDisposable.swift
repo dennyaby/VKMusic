@@ -22,7 +22,9 @@ public class SerialDisposable : DisposeBase, Cancelable {
     - returns: Was resource disposed.
     */
     public var disposed: Bool {
-        return _disposed
+        get {
+            return _disposed
+        }
     }
     
     /**

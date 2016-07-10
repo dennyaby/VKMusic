@@ -37,7 +37,6 @@ class LoginViewController: UIViewController{
         }.addDisposableTo(disposeBag)
         
         if shouldLogout {
-            print("Should logout")
             for cookie in NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies! {
                 NSHTTPCookieStorage.sharedHTTPCookieStorage().deleteCookie(cookie)
             }
@@ -46,13 +45,11 @@ class LoginViewController: UIViewController{
         
         let request = VKApi.Requests.Authorize
         
-        print("request: \(request)")
         self.webView.loadRequest(NSURLRequest(URL: NSURL(string: request)!))
         
         loginButton.rx_tap.subscribeNext {
             let request = VKApi.Requests.Authorize
-            
-            print("request: \(request)")
+
             self.webView.loadRequest(NSURLRequest(URL: NSURL(string: request)!))
             self.webView.hidden = false
             self.navBar.hidden = false
@@ -63,23 +60,16 @@ class LoginViewController: UIViewController{
         webView.hidden = true
         navBar.hidden = true
     }
-    
-    deinit {
-        print("Login VC deinit")
-    }
 }
 
 
 extension LoginViewController: UIWebViewDelegate {
     func webViewDidFinishLoad(webView: UIWebView) {
         if let currentUrl = webView.request?.URL?.absoluteString {
-            print("Result request webView: \(currentUrl)")
-            var user = [String: AnyObject]()
             if currentUrl.lowercaseString.rangeOfString("access_token") != nil {
                 var data = currentUrl.componentsSeparatedByCharactersInSet(NSCharacterSet(charactersInString: "=&"))
                 VKApi.sharedInstance.access_token = data[1]
                 VKApi.sharedInstance.userId = data[5]
-                print("User token = \(user["access_token"])")
                 self.closeWebView()
                 performSegueWithIdentifier(Constants.Storyboard.MusicAppSegue, sender: nil)
             } else {

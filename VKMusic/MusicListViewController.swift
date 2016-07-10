@@ -56,10 +56,13 @@ extension MusicListViewController: UITableViewDataSource {
         let song = songs[indexPath.row]
         cell.artist = song.artist
         cell.title = song.title
-        cell.duration = stringTimeFromNumberOfSeconds(song.duration)
+        cell.duration = Utils.stringTimeFromNumberOfSeconds(song.duration)
+        if song.url == AudioPlayer.sharedInstance.currentUrl {
+            cell.backgroundColor = UIColor(white: 0.1, alpha: 1)
+        }
         if let path = getLowestCellsIndexPath() {
             if let overallSongsCount = overallSongsCount {
-                if (songs.count - path.row < UploadNewSongsOffset) && songs.count + 20 <= overallSongsCount {
+                if (songs.count - path.row < UploadNewSongsOffset) && songs.count + 1 <= overallSongsCount {
                     print("Downloaded")
                     loadMoreSongs()
                 }
@@ -87,7 +90,12 @@ extension MusicListViewController {
             if let playerVC = segue.destinationViewController as? PlayerViewController {
                 if let cell = sender as? UITableViewCell, indexPath = self.tableView.indexPathForCell(cell) {
                     let song = songs[indexPath.row]
-                    playerVC.url = song.url
+                    playerVC.song = song
+                    if let count = overallSongsCount {
+                        Playlist.sharedInstance.type = PlaylistType.UserAudio(count: count, offset: indexPath.row)
+                    } else {
+                        Playlist.sharedInstance.type = .None
+                    }
                 }
             }
         }
@@ -97,26 +105,20 @@ extension MusicListViewController {
 
 // MARK: Utilites
 extension MusicListViewController {
-    func stringTimeFromNumberOfSeconds(allSeconds: Int) -> String {
-        let seconds = allSeconds % 60
-        let minutes = allSeconds / 60
-        if seconds < 10 {
-            return "\(minutes):0\(seconds)"
-        } else {
-            return "\(minutes):\(seconds)"
-        }
-        
-    }
-    
     func loadMoreSongs() {
         if let urlRequest = VKApi.sharedInstance.getRequestWithMethod("audio.get", parameters: ["offset": songs.count, "count": 20]) {
             Alamofire.request(.GET, urlRequest).responseJSON {[weak weakSelf = self] response in
                 if response.result.isSuccess {
                     if let result = response.result.value {
                         let result = JSONParser.parseMusicList(result)
+                        let oldSongsCount = weakSelf?.songs.count
                         weakSelf?.overallSongsCount = result.count
                         weakSelf?.songs.appendContentsOf(result.items)
-                        weakSelf?.tableView.reloadData()
+                        var indexPaths = [NSIndexPath]()
+                        for (n, _) in result.items.enumerate() {
+                            indexPaths.append(NSIndexPath(forRow: oldSongsCount! + n, inSection: 0))
+                        }
+                        weakSelf?.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
                     }
                 }
             }
