@@ -77,6 +77,17 @@ class PlayerViewController: UIViewController {
         volumeSlider.showsRouteButton = true
         volumeSlider.showsVolumeSlider = true
         
+        if isCurrentSongPlaying {
+            print("Current song")
+            progressSlider.maximumValue = Float(duration!)
+            durationSet = true
+            progressSlider.value = currentTime
+        } else {
+            progressSlider.value = 0.0
+        }
+        progressSlider.minimumValue = 0.0
+        progressSlider.continuous = false
+        
         progressSlider.rx_value.subscribeNext {value in
             if self.isCurrentSongPlaying {
                 AudioPlayer.sharedInstance.player.seekToTime(CMTime(seconds: Double(value), preferredTimescale: CMTimeScale(1)))
@@ -88,9 +99,8 @@ class PlayerViewController: UIViewController {
         
         progressSlider.rx_controlEvent(.TouchDown).subscribeNext { self.touchingSlider = true }.addDisposableTo(disposeBag)
         
-        progressSlider.value = 0.0
-        progressSlider.minimumValue = 0.0
-        progressSlider.continuous = false
+        
+
         
         playPauseButton.rx_tap.subscribeNext { if let song = self.song, url = NSURL(string: song.url) {
             AudioPlayer.sharedInstance.pauseOrPlaySongWithUrl(url)
@@ -137,13 +147,9 @@ class PlayerViewController: UIViewController {
     }
     
     func updateView() {
-        if isCurrentSongPlaying && !touchingSlider{
-            if !touchingSlider {
-                progressSlider.value = currentTime
-            }
-            if !touchingVolumeSlider {
+        if isCurrentSongPlaying && !touchingSlider {
+            progressSlider?.value = currentTime
 
-            }
         }
         if !durationSet && isCurrentSongPlaying {
             if let duration = duration where duration != Float.NaN {

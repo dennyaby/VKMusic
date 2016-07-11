@@ -75,6 +75,7 @@ class AudioPlayer: NSObject {
             self.playerItem = AVPlayerItem(asset: self.avAsset!)
             self.player = AVPlayer(playerItem: self.playerItem!)
             self.player.play()
+            
         }
     }
     

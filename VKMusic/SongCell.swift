@@ -13,15 +13,16 @@ class SongCell: UITableViewCell {
     @IBOutlet weak var songTitle: UILabel!
     @IBOutlet weak var songArtist: UILabel!
     @IBOutlet weak var songDuration: UILabel!
+    @IBOutlet weak var downloadView: DownloadView!
     
-    var title: String? { didSet { songTitle.text = title }}
-    var artist: String? { didSet { songArtist.text = artist }}
-    var duration: String? { didSet { songDuration.text = duration }}
-    
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    var song: Song? {
+        didSet {
+            if let song = song {
+                songTitle.text = song.title
+                songArtist.text = song.artist
+                songDuration.text = Utils.stringTimeFromNumberOfSeconds(song.duration)
+            }
+        }
     }
 
 }

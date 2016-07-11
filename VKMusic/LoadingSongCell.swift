@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class LoadingSongCell: UITableViewCell {
     var progress: Double? {
@@ -17,6 +18,20 @@ class LoadingSongCell: UITableViewCell {
     
     var title: String? { didSet { }}
     var artist: String? { didSet { }}
+    
+    @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var downloadProgress: UIProgressView!
+    
+    @IBOutlet weak var playPauseButton: UIButton!
+    
+    let disposeBag = DisposeBag()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        playPauseButton.rx_tap.subscribeNext { }.addDisposableTo(disposeBag)
+    }
+    
     
     
 }

@@ -299,6 +299,12 @@
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="artistLabel" destination="rOP-fu-Sw2" id="m4m-HC-t0l"/>
+                                    <outlet property="downloadProgress" destination="5ek-tz-QT7" id="tKF-X2-Lol"/>
+                                    <outlet property="playPauseButton" destination="Iyd-gc-KLv" id="cKV-Ed-v0v"/>
+                                    <outlet property="titleLabel" destination="Q3O-QU-Prv" id="2w3-VK-xme"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -25,6 +25,13 @@ struct Constants {
         static let SongLoaded = "SongLoadedNotification"
         static let UserInfoSongField = "song"
         static let RestartSong = "RestartSong"
+        static let ProgressOfSongDownloading = "ProgressOfSongDownloadingNotification"
+        static let SongDownloadCompleted = "SongDownloadCompletedNotification"
+        static let UserInfoSongUrl = "song_url"
+        static let UserInfoSongDownloadProgress = "song_progress"
+        static let SongDownloadSuccessfully = "SongDownloadSuccessfullyNotification"
+        static let UserInfoDownloadedSongData = "song_data"
+        static let UserInfoDownloadedSongInfo = "song_info"
     }
     
     struct Configuration {

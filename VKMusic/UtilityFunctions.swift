@@ -22,6 +22,10 @@ class Utils {
     }
     
     static func stringTimeFromNumberOfSeconds(seconds: Float) -> String {
-        return Utils.stringTimeFromNumberOfSeconds(Int(round(seconds)))
+        if seconds != Float.NaN {
+            return Utils.stringTimeFromNumberOfSeconds(Int(round(seconds)))
+        } else {
+            return ""
+        }
     }
 }

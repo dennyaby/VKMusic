@@ -33,7 +33,6 @@ class MusicListViewController: UIViewController {
         }
         loadMoreSongs()
     }
-    
 }
 
 // MARK: UITableViewDataSource
@@ -51,12 +50,13 @@ extension MusicListViewController: UITableViewDataSource {
         return 1
     }
     
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Storyboard.SongCell, forIndexPath: indexPath) as! SongCell
         let song = songs[indexPath.row]
-        cell.artist = song.artist
-        cell.title = song.title
-        cell.duration = Utils.stringTimeFromNumberOfSeconds(song.duration)
+        cell.song = song
+        
         if song.url == AudioPlayer.sharedInstance.currentUrl {
             cell.backgroundColor = UIColor(white: 0.1, alpha: 1)
         }
@@ -138,9 +138,4 @@ extension MusicListViewController {
     }
 }
 
-struct Song {
-    let artist: String
-    let title: String
-    let duration: Int
-    let url: String
-}
+
