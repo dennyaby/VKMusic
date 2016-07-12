@@ -17,7 +17,7 @@ class JSONParser {
         
         if let count = JSON(json)["response"]["count"].int {
             result.count = count
-        }
+        } 
         
         if let arrayOfSongs = JSON(json)["response"]["items"].array {
             for song in arrayOfSongs {

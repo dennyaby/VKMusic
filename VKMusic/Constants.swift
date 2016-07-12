@@ -37,4 +37,22 @@ struct Constants {
     struct Configuration {
         static let SecondsToPlayPrevious: Float = 5.0
     }
+    
+    struct FileSystem {
+        static let TemporaryFolder: NSURL = {
+            let fm = NSFileManager.defaultManager()
+            let documentsDir = fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            let tmpFolder = documentsDir.URLByAppendingPathComponent("Temp")
+            
+            return tmpFolder
+        }()
+        
+        static let DownloadsFolder: NSURL = {
+            let fm = NSFileManager.defaultManager()
+            let documentsDir = fm.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            let storageFolder = documentsDir.URLByAppendingPathComponent("Storage")
+            
+            return storageFolder
+        }()
+    }
 }

@@ -41,7 +41,10 @@ class Playlist: NSObject {
                 if let urlRequest = VKApi.sharedInstance.getRequestWithMethod("audio.get", parameters: ["offset": offset + offsetChange, "count": 1]) {
                     Alamofire.request(.GET, urlRequest).responseJSON {[weak weakSelf = self] response in
                         if response.result.isSuccess {
+                            print("Result success")
                             if let result = response.result.value {
+                                print("Value is")
+                                
                                 let result = JSONParser.parseMusicList(result)
                                 if result.items.count == 1 {
                                     NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.SongLoaded, object: nil, userInfo: [Constants.Notifications.UserInfoSongField: Wrapper<Song>(theValue: result.items[0])])
@@ -50,6 +53,13 @@ class Playlist: NSObject {
                                         strongSelf.currentSong = result.items[0]
                                         if case let PlaylistType.UserAudio(count: count, offset: offset) = strongSelf.type {
                                             strongSelf.type = PlaylistType.UserAudio(count: count, offset: offset + offsetChange)
+                                        }
+                                    }
+                                } else {
+                                    if let strongSelf = weakSelf {
+                                        if case let PlaylistType.UserAudio(count: count, offset: offset) = strongSelf.type {
+                                            strongSelf.type = PlaylistType.UserAudio(count: count, offset: offset + offsetChange)
+                                            strongSelf.playSong(offsetChange == 1)
                                         }
                                     }
                                 }
@@ -64,6 +74,7 @@ class Playlist: NSObject {
     }
     
 }
+
 
 enum PlaylistType {
     case UserAudio(count: Int, offset: Int)

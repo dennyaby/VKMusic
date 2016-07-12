@@ -21,11 +21,12 @@ struct Song: Hashable, Equatable {
 
 class SongEntity {
     var songInfo: Song?
-    var songData: NSData?
+    var downloaded: Bool = false
+    var filePath: NSURL?
     
-    init(songInfo: Song, songData: NSData) {
+    init(songInfo: Song, filePath: NSURL) {
         self.songInfo = songInfo
-        self.songData = songData
+        self.filePath = filePath
     }
 }
 
